@@ -82,12 +82,23 @@ test.describe('homepage', () => {
   });
 
   test('loads without console errors or failed requests', async ({ page }) => {
+    // Vercel Analytics/Speed Insights request /_vercel/insights/* and
+    // /_vercel/speed-insights/*, which are only served by Vercel's edge in a
+    // real deployment. Under local `astro preview` (how CI runs) they 404,
+    // which is expected and benign, so ignore just those and catch the rest.
+    const ignore = /\/_vercel\/(insights|speed-insights)\//;
     const errors: string[] = [];
     page.on('console', (msg) => {
-      if (msg.type() === 'error') errors.push(msg.text());
+      if (msg.type() !== 'error') return;
+      // For a failed resource load the URL is in msg.location(), not the text
+      // ("Failed to load resource: ... 404"), so check both.
+      if (ignore.test(msg.text()) || ignore.test(msg.location()?.url ?? '')) return;
+      errors.push(msg.text());
     });
     page.on('requestfailed', (req) => {
-      errors.push(`${req.failure()?.errorText} ${req.url()}`);
+      if (!ignore.test(req.url())) {
+        errors.push(`${req.failure()?.errorText} ${req.url()}`);
+      }
     });
 
     await page.goto('/', { waitUntil: 'networkidle' });
