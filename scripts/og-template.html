@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Source artwork for the 1200x630 social card (public/og.png).
+      Rendered to PNG by scripts/generate-og.mjs. Edit here, then `npm run og`.
+
+      Fonts are loaded straight from node_modules so the card is set in the
+      same faces as the site, with no network fetch at render time.
+    -->
+    <style>
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../node_modules/@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2')
+          format('woff2-variations');
+        font-weight: 100 900;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2')
+          format('woff2-variations');
+        font-weight: 100 800;
+        font-style: normal;
+      }
+
+      /* Mirrors the design tokens in src/styles/global.css. */
+      :root {
+        --void: #0b0b0c;
+        --ink: #f2f0eb;
+        --muted: #8a8a85;
+        --faint: #56564f;
+        --hairline: rgba(242, 240, 235, 0.1);
+        --accent: #e4ff3a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+      }
+
+      body {
+        background-color: var(--void);
+        /* The same whisper of grain the site uses, so the void has depth. */
+        background-image: radial-gradient(
+          circle at 50% -10%,
+          rgba(242, 240, 235, 0.045),
+          transparent 60%
+        );
+        color: var(--ink);
+        font-family: 'Archivo', sans-serif;
+        font-feature-settings: 'ss01', 'cv01';
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 64px 72px;
+      }
+
+      .label {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 17px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* ---- Meta strip -------------------------------------------------- */
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 24px;
+        border-top: 1px solid var(--hairline);
+        padding-top: 18px;
+      }
+      .meta span:nth-child(1) {
+        grid-column: span 4;
+        color: var(--ink);
+      }
+      .meta span:nth-child(2) {
+        grid-column: span 4;
+        color: var(--faint);
+      }
+      .meta span:nth-child(3) {
+        grid-column: 10 / span 3;
+        text-align: right;
+        color: var(--faint);
+      }
+
+      /* ---- Name + statement -------------------------------------------- */
+      .body {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 24px;
+        align-content: center;
+        align-items: flex-end;
+      }
+
+      h1 {
+        grid-column: span 8;
+        font-size: 152px;
+        font-weight: 600;
+        text-transform: uppercase;
+        line-height: 0.82;
+        letter-spacing: -0.03em;
+      }
+
+      .statement {
+        grid-column: 9 / span 4;
+        font-size: 22px;
+        line-height: 1.35;
+        color: var(--muted);
+        padding-bottom: 12px;
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      /* ---- Footer ------------------------------------------------------ */
+      .foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--hairline);
+        padding-top: 20px;
+      }
+      .wordmark {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 19px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink);
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="meta">
+      <span class="label">Software Engineer</span>
+      <span class="label">Design &amp; Systems</span>
+      <span class="label">Est. 2018</span>
+    </div>
+
+    <div class="body">
+      <h1>
+        Keegan<br />Jones<span class="accent">.</span>
+      </h1>
+      <p class="statement">
+        Engineering and design as one craft &mdash; a curated set of the things
+        I&rsquo;ve most enjoyed making.
+      </p>
+    </div>
+
+    <div class="foot">
+      <span class="wordmark">keegs<span class="accent">.</span>co</span>
+      <span class="status">
+        <span class="dot"></span>
+        <span class="label">Open to work</span>
+      </span>
+    </div>
+  </body>
+</html>
