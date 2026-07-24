@@ -1,15 +1,15 @@
 @import 'tailwindcss';
 
 /* ------------------------------------------------------------------ *
- *  keegs.co — design tokens
+ *  keegs.co design tokens
  *  A Swiss-typographic system: warm near-black, one restrained accent,
  *  a grotesque for voice and a mono for machine-facing metadata.
  * ------------------------------------------------------------------ */
 @theme {
   /* Surfaces & ink */
-  --color-void: #0b0b0c; /* page ground — warm near-black          */
-  --color-ink: #f2f0eb; /* primary type — warm off-white          */
-  --color-muted: #8a8a85; /* secondary type — resolved grey         */
+  --color-void: #0b0b0c; /* page ground: warm near-black           */
+  --color-ink: #f2f0eb; /* primary type: warm off-white           */
+  --color-muted: #8a8a85; /* secondary type: resolved grey          */
   --color-faint: #56564f; /* tertiary / disabled                    */
   --color-hairline: rgba(242, 240, 235, 0.1); /* grid & dividers   */
   --color-hairline-strong: rgba(242, 240, 235, 0.18);
@@ -21,7 +21,7 @@
   --font-sans: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', monospace;
 
-  /* A deliberate display scale — geometric, wide jumps for tension. */
+  /* A deliberate display scale: geometric, wide jumps for tension. */
   --text-mega: clamp(3.25rem, 13vw, 12rem);
   --text-display: clamp(2.5rem, 7vw, 5.5rem);
   --text-title: clamp(1.75rem, 3.5vw, 3rem);
@@ -93,7 +93,7 @@
  *  Utilities
  * ------------------------------------------------------------------ */
 @layer utilities {
-  /* Mono eyebrow / label — the machine voice. */
+  /* Mono eyebrow / label: the machine voice. */
   .label {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -113,7 +113,7 @@
     border-top: 1px solid var(--color-hairline);
   }
 
-  /* Staggered entrance — set --i on children to sequence the reveal. */
+  /* Staggered entrance: set --i on children to sequence the reveal. */
   .reveal {
     opacity: 0;
     transform: translateY(1.25rem);

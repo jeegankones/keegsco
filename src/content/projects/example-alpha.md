@@ -15,5 +15,5 @@ stats:
   language: TypeScript
 ---
 
-Replace this file with a real project. The body is optional — use it for a
+Replace this file with a real project. The body is optional. Use it for a
 slightly longer description that appears on hover or on a future detail page.
