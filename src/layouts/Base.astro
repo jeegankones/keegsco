@@ -16,6 +16,12 @@ const {
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+/* Social card. Artwork lives in scripts/og-template.html — run `npm run og`
+   to regenerate public/og.png after editing it. Scrapers (iMessage in
+   particular) require an absolute URL. */
+const ogImage = new URL('/og.png', Astro.site);
+const ogImageAlt = 'Keegan Jones — software engineer. keegs.co';
 ---
 
 <!doctype html>
@@ -36,11 +42,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="keegs.co" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:secure_url" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImageAlt} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <meta name="theme-color" content="#0b0b0c" />
 
