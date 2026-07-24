@@ -1,0 +1,40 @@
+---
+/**
+ * A deliberately reserved space for the signature interactive visual we'll
+ * design together later. It is styled to read as *intentional* negative
+ * space — a framed, labelled void — not as something missing. When the
+ * visual is ready, replace the contents of this component; the frame and
+ * caption language can stay.
+ */
+---
+
+<div
+  class="reveal group relative aspect-[4/5] w-full overflow-hidden border border-hairline"
+  style="--i: 6; border-color: var(--color-hairline);"
+  aria-hidden="true"
+>
+  <!-- Corner ticks — a plotter/registration-mark motif -->
+  <span class="pointer-events-none absolute left-2 top-2 h-3 w-3 border-l border-t" style="border-color: var(--color-hairline-strong);"></span>
+  <span class="pointer-events-none absolute right-2 top-2 h-3 w-3 border-r border-t" style="border-color: var(--color-hairline-strong);"></span>
+  <span class="pointer-events-none absolute bottom-2 left-2 h-3 w-3 border-b border-l" style="border-color: var(--color-hairline-strong);"></span>
+  <span class="pointer-events-none absolute bottom-2 right-2 h-3 w-3 border-b border-r" style="border-color: var(--color-hairline-strong);"></span>
+
+  <!-- Faint drifting field so the void feels alive, not dead -->
+  <div
+    class="absolute inset-0 opacity-40 transition-opacity duration-700 group-hover:opacity-70"
+    style="background:
+      radial-gradient(60% 50% at 50% 40%, rgba(228,255,58,0.06), transparent 70%),
+      repeating-linear-gradient(0deg, transparent 0 22px, rgba(242,240,235,0.03) 22px 23px),
+      repeating-linear-gradient(90deg, transparent 0 22px, rgba(242,240,235,0.03) 22px 23px);"
+  >
+  </div>
+
+  <!-- Caption -->
+  <div class="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 p-5">
+    <span class="label" style="letter-spacing: 0.16em; color: var(--color-muted);">Signature visual</span>
+    <span class="label inline-flex items-center gap-2" style="letter-spacing: 0.16em; color: var(--color-faint);">
+      <span class="inline-block h-1.5 w-1.5 shrink-0 rounded-full" style="background: var(--color-accent);"></span>
+      In development
+    </span>
+  </div>
+</div>

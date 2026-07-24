@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import SignatureSlot from '../components/SignatureSlot.astro';
+
+const projects = (await getCollection('projects'))
+  .filter((p) => p.data.featured)
+  .sort((a, b) => a.data.index - b.data.index);
+
+const year = '2026';
+
+const contact = [
+  { label: 'GitHub', href: 'https://github.com/jeegankones', handle: '@jeegankones' },
+  { label: 'Email', href: 'mailto:keegs112@gmail.com', handle: 'keegs112@gmail.com' },
+];
+---
+
+<Base>
+  <!-- ============================================================= -->
+  <!--  Masthead                                                     -->
+  <!-- ============================================================= -->
+  <header class="gutter reveal flex items-center justify-between py-6" style="--i: 0;">
+    <a href="/" class="label" style="color: var(--color-ink); letter-spacing: 0.14em;">
+      keegs<span style="color: var(--color-accent);">.</span>co
+    </a>
+    <nav class="flex items-center gap-6 md:gap-10">
+      <a href="#work" class="label transition-colors hover:text-[var(--color-ink)]">Work</a>
+      <a href="#contact" class="label transition-colors hover:text-[var(--color-ink)]">Contact</a>
+      <span class="label hidden items-center gap-2 sm:inline-flex" style="color: var(--color-faint);">
+        <span class="relative inline-flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style="background: var(--color-accent);"></span>
+          <span class="relative inline-flex h-1.5 w-1.5 rounded-full" style="background: var(--color-accent);"></span>
+        </span>
+        Open to work
+      </span>
+    </nav>
+  </header>
+
+  <!-- ============================================================= -->
+  <!--  Hero                                                         -->
+  <!-- ============================================================= -->
+  <section class="gutter relative pt-16 pb-24 md:pt-28 md:pb-36">
+    <!-- Meta strip -->
+    <div class="reveal mb-10 grid grid-cols-12 gap-x-6 border-t pt-4" style="--i: 1; border-color: var(--color-hairline);">
+      <span class="label col-span-6 md:col-span-3">Software Engineer</span>
+      <span class="label col-span-6 md:col-span-3" style="color: var(--color-faint);">Design &amp; Systems</span>
+      <span class="label col-span-6 md:col-span-3 md:col-start-10 md:text-right" style="color: var(--color-faint);">Est. {year}</span>
+    </div>
+
+    <div class="grid grid-cols-12 items-end gap-x-6 gap-y-12">
+      <!-- Name -->
+      <h1 class="col-span-12 md:col-span-8">
+        <span class="reveal block text-mega font-semibold uppercase leading-[0.82] tracking-[-0.03em]" style="--i: 2;">Keegan</span>
+        <span class="reveal block text-mega font-semibold uppercase leading-[0.82] tracking-[-0.03em]" style="--i: 3;">
+          Jones<span style="color: var(--color-accent);">.</span>
+        </span>
+      </h1>
+
+      <!-- Statement -->
+      <p class="reveal col-span-12 max-w-sm text-lg leading-snug text-muted md:col-span-4 md:pb-3" style="--i: 4; color: var(--color-muted);">
+        I build software with an eye for how it looks and how it holds up —
+        engineering and design treated as one craft. This is a small, curated
+        set of the things I&rsquo;ve most enjoyed making.
+      </p>
+    </div>
+
+    <!-- Signature slot, held in the hero's right column -->
+    <div class="mt-20 grid grid-cols-12 gap-x-6">
+      <div class="reveal col-span-12 flex items-end justify-between border-t pt-4 md:col-span-7" style="--i: 5; border-color: var(--color-hairline);">
+        <p class="max-w-xs text-sm leading-relaxed" style="color: var(--color-faint);">
+          A signature interactive piece will live here — a single, considered
+          moment of motion. We&rsquo;re still designing it.
+        </p>
+      </div>
+      <div class="col-span-12 mt-8 md:col-span-4 md:col-start-9 md:mt-0">
+        <SignatureSlot />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!--  Selected work                                                -->
+  <!-- ============================================================= -->
+  <section id="work" class="pt-8">
+    <div class="gutter flex items-baseline justify-between pb-6">
+      <h2 class="label" style="color: var(--color-ink);">Selected Work</h2>
+      <span
+        class="label tabular-nums"
+        style="color: var(--color-faint);"
+        data-testid="project-count"
+        data-count={projects.length}
+      >
+        [ {String(projects.length).padStart(2, '0')} ]
+      </span>
+    </div>
+
+    <div>
+      {
+        projects.map((p) => (
+          <ProjectRow
+            index={p.data.index}
+            title={p.data.title}
+            tagline={p.data.tagline}
+            year={p.data.year}
+            tags={p.data.tags}
+            status={p.data.status}
+            href={p.data.repo ?? p.data.live}
+          />
+        ))
+      }
+      <div class="rule"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!--  Contact                                                      -->
+  <!-- ============================================================= -->
+  <section id="contact" class="gutter pt-28 pb-16 md:pt-40">
+    <p class="label mb-8" style="color: var(--color-faint);">[ Contact ]</p>
+    <div class="grid grid-cols-12 items-end gap-x-6 gap-y-12">
+      <h2 class="col-span-12 text-display font-semibold uppercase leading-[0.9] tracking-[-0.02em] md:col-span-7">
+        Let&rsquo;s make<br />something<span style="color: var(--color-accent);">.</span>
+      </h2>
+
+      <ul class="col-span-12 flex flex-col md:col-span-5 md:pb-2">
+        {
+          contact.map((c) => (
+            <li>
+              <a
+                href={c.href}
+                target={c.href.startsWith('http') ? '_blank' : undefined}
+                rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="group flex items-center justify-between border-t py-5 transition-colors duration-500 hover:text-[var(--color-accent)]"
+                style="border-color: var(--color-hairline);"
+              >
+                <span class="text-2xl font-medium tracking-tight">{c.label}</span>
+                <span class="label transition-colors group-hover:text-[var(--color-accent)]" style="color: var(--color-muted);">
+                  {c.handle}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================= -->
+  <!--  Colophon                                                     -->
+  <!-- ============================================================= -->
+  <footer class="gutter flex flex-col gap-3 border-t py-8 md:flex-row md:items-center md:justify-between" style="border-color: var(--color-hairline);">
+    <span class="label" style="color: var(--color-faint);">© {year} Keegan Jones</span>
+    <span class="label" style="color: var(--color-faint);">
+      Built with Astro · Set in Archivo &amp; JetBrains Mono
+    </span>
+  </footer>
+</Base>
