@@ -1,30 +1,25 @@
 {
-  "name": "nuxt-app",
-  "private": true,
+  "name": "keegsco",
   "type": "module",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
-    "lint:eslint": "eslint .",
-    "lint:prettier": "prettier . --check",
-    "lint:fix": "eslint . --fix && prettier --write --list-different ."
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "astro": "astro"
   },
   "dependencies": {
-    "nuxt": "^3.12.4",
-    "vue": "latest"
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.1.0",
+    "astro": "^7.1.3"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^0.5.0",
-    "@nuxtjs/tailwindcss": "^6.12.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-tailwindcss": "^3.17.4",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5"
+    "@playwright/test": "^1.61.1",
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0"
   }
 }
