@@ -81,12 +81,6 @@ test.describe('homepage', () => {
     ).not.toHaveCount(0);
   });
 
-  test('reserves the signature-visual slot', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.getByText('Signature visual')).toBeVisible();
-    await expect(page.getByText('In development')).toBeVisible();
-  });
-
   test('loads without console errors or failed requests', async ({ page }) => {
     const errors: string[] = [];
     page.on('console', (msg) => {

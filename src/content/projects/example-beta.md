@@ -2,7 +2,7 @@
 index: 2
 featured: true
 title: Placeholder Two
-tagline: Another favorite build — swap in the real title, tagline, and stack.
+tagline: Another favorite build. Swap in the real title, tagline, and stack.
 year: "2023"
 role: Maintainer
 tags: ['Rust', 'Performance', 'Tooling']
