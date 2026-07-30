@@ -32,7 +32,6 @@ const linkAttrs = href
     <!-- Index marker -->
     <span
       class="label col-span-2 tabular-nums text-faint transition-colors duration-500 group-hover:text-accent md:col-span-1"
-      style="color: var(--color-faint);"
     >
       {String(index).padStart(2, '0')}
     </span>
@@ -44,7 +43,7 @@ const linkAttrs = href
       >
         {title}
       </h3>
-      <p class="mt-3 max-w-md text-base leading-snug text-muted" style="color: var(--color-muted);">
+      <p class="mt-3 max-w-md text-base leading-snug text-muted">
         {tagline}
       </p>
     </div>
@@ -53,7 +52,7 @@ const linkAttrs = href
     <div class="col-span-8 col-start-3 mt-5 flex flex-wrap gap-x-4 gap-y-2 md:col-span-3 md:col-start-8 md:mt-0">
       {
         tags.map((t) => (
-          <span class="label" style="letter-spacing:0.14em; color: var(--color-muted);">
+          <span class="label" style="letter-spacing:0.14em;">
             {t}
           </span>
         ))
@@ -64,13 +63,12 @@ const linkAttrs = href
     <div
       class="col-span-2 col-start-11 mt-5 flex items-baseline justify-end gap-3 md:col-span-2 md:col-start-11 md:mt-0"
     >
-      <span class="label" style="color: var(--color-muted);">{year}</span>
+      <span class="label">{year}</span>
       {
         href && (
           <span
             aria-hidden="true"
             class="text-lg leading-none text-faint transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:text-accent"
-            style="color: var(--color-faint);"
           >
             ↗
           </span>
