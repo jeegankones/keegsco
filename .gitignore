@@ -35,6 +35,9 @@ pnpm-debug.log*
 # vercel
 .vercel
 
+# impeccable live-mode session journals (local recovery state)
+.impeccable/live/sessions/
+
 # playwright
 /test-results/
 /playwright-report/
