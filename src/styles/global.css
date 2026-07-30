@@ -6,11 +6,17 @@
  *  a grotesque for voice and a mono for machine-facing metadata.
  * ------------------------------------------------------------------ */
 @theme {
-  /* Surfaces & ink */
+  /* Surfaces & ink.
+   * Three tiers, each a deliberate perceptual step apart (L* 95 / 66 / 53)
+   * and each carrying its own text at WCAG AA or better against the void.
+   * The tertiary tier is the binding constraint: it must clear 4.5:1, which
+   * sets the floor the tier above has to clear to stay visibly separate.
+   * Warmth (blue channel a few points under red/green) is the family trait.
+   * If you retone these, re-measure. Contrast is a spec here, not a taste. */
   --color-void: #0b0b0c; /* page ground: warm near-black           */
-  --color-ink: #f2f0eb; /* primary type: warm off-white           */
-  --color-muted: #8a8a85; /* secondary type: resolved grey          */
-  --color-faint: #56564f; /* tertiary / disabled                    */
+  --color-ink: #f2f0eb; /* primary type: warm off-white  17.3:1   */
+  --color-muted: #a0a09b; /* secondary type: resolved grey  7.5:1   */
+  --color-faint: #7e7e77; /* tertiary: annotation & meta    4.8:1   */
   --color-hairline: rgba(242, 240, 235, 0.1); /* grid & dividers   */
   --color-hairline-strong: rgba(242, 240, 235, 0.18);
 
@@ -93,13 +99,23 @@
  *  Utilities
  * ------------------------------------------------------------------ */
 @layer utilities {
-  /* Mono eyebrow / label: the machine voice. */
+  /* Mono eyebrow / label: the machine voice.
+   * Colour is deliberately split out below. Kept here it would sit at class
+   * specificity and, being declared after Tailwind's generated utilities,
+   * would silently outrank every `text-*` and `hover:text-*` on the same
+   * element, forcing callers into inline styles that then outrank the hover
+   * variants in turn. This rule carries typography only. */
   .label {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+  }
+
+  /* Zero-specificity default tone: any `text-*` utility, and any `hover:`
+   * or `group-hover:` variant, wins over it without escalation. */
+  :where(.label) {
     color: var(--color-muted);
   }
 
@@ -133,6 +149,11 @@
       animation: none;
       opacity: 1;
       transform: none;
+    }
+    /* The status pulse loops forever; it is the one animation that never
+       ends on its own, so it must yield here too. */
+    .animate-ping {
+      animation: none;
     }
     html {
       scroll-behavior: auto;
